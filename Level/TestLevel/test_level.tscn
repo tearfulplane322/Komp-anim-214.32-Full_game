@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://pkcrleamqju1"]
+
+[ext_resource type="Script" uid="uid://cfebcbgrn3g1r" path="res://Level/test_level.gd" id="1_85nrf"]
+[ext_resource type="Texture2D" uid="uid://pa7uof8cahh" path="res://Assets/TestTexture/Dark/texture_01.png" id="1_gfs46"]
+[ext_resource type="PackedScene" uid="uid://bfi65r7du3o3b" path="res://Player/player.tscn" id="2_2mfh0"]
+[ext_resource type="PackedScene" uid="uid://cflhcerifec5h" path="res://PLMech/coin_interactable.tscn" id="2_26vih"]
+[ext_resource type="PackedScene" uid="uid://q68c1eomsyxw" path="res://PLMech/bomb_interactable.tscn" id="3_26vih"]
+[ext_resource type="PackedScene" uid="uid://6hsl6liu0i7o" path="res://PLMech/death_zone.tscn" id="3_dn1u6"]
+[ext_resource type="PackedScene" uid="uid://c0k7pgd2nwvn3" path="res://PLMech/heart_interactable.tscn" id="4_ekqs7"]
+[ext_resource type="PackedScene" uid="uid://cehc5ji5vh4pl" path="res://PLMech/upgrade_zone_speed.tscn" id="6_30fw8"]
+[ext_resource type="PackedScene" uid="uid://cr6dx1i1seq4l" path="res://PLMech/upgrade_zone_cm.tscn" id="7_c7qpa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mfh0"]
+albedo_texture = ExtResource("1_gfs46")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gfs46"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_2mfh0"]
+sky_material = SubResource("ProceduralSkyMaterial_gfs46")
+
+[sub_resource type="Environment" id="Environment_dn1u6"]
+background_mode = 2
+sky = SubResource("Sky_2mfh0")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dn1u6"]
+
+[sub_resource type="Curve3D" id="Curve3D_8upm6"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7.5, 0.5546026, -7.5, 0, 0, 0, 0, 0, 0, 7.495867, 0.5, -7.5, 0, 0, 0, 0, 0, 0, 7.5, 0.5, 7.6000004, 0, 0, 0, 0, 0, 0, -7.4611006, 0.5, 7.5771294),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="TestLevel" type="Node3D" unique_id=366156238]
+script = ExtResource("1_85nrf")
+coin_scene = ExtResource("2_26vih")
+bomb_scene = ExtResource("3_26vih")
+heart_scene = ExtResource("4_ekqs7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1705923110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27590942, 0)
+material_override = SubResource("StandardMaterial3D_2mfh0")
+use_collision = true
+collision_mask = 2
+size = Vector3(20, 0.5, 20)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1772064870]
+transform = Transform3D(1, 0, 0, 0, 0.538712, 0.84249, 0, -0.84249, 0.538712, 0, 5.692594, 6.293104)
+
+[node name="Lights" type="Node3D" parent="." unique_id=1619732149]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=198371495]
+environment = SubResource("Environment_dn1u6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1486090546]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=2084436118 instance=ExtResource("2_2mfh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40690947, 0)
+
+[node name="DeathZone" parent="." unique_id=999536375 instance=ExtResource("3_dn1u6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Cylinders" type="Node3D" parent="." unique_id=1505251827]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders" unique_id=508666010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.010568, 0, -5.0041094)
+mesh = SubResource("CylinderMesh_dn1u6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders" unique_id=331006800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.982433, 0, -5.0041094)
+mesh = SubResource("CylinderMesh_dn1u6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders" unique_id=1642391247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.010568, 0, 4.9523454)
+mesh = SubResource("CylinderMesh_dn1u6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders" unique_id=1760414860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.989432, 0, 4.895891)
+mesh = SubResource("CylinderMesh_dn1u6")
+
+[node name="SpawnPath" type="Path3D" parent="." unique_id=1831795665]
+curve = SubResource("Curve3D_8upm6")
+
+[node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath" unique_id=176570604]
+transform = Transform3D(-4.371139e-08, 0.0036411423, -0.9999901, 0, 0.9999901, 0.0036411423, 1, 1.5915938e-10, -4.371096e-08, -7.5, 0.5546026, -7.5)
+
+[node name="UpgradeZoneSpeed" parent="." unique_id=1698409362 instance=ExtResource("6_30fw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5062294, -0.025409663, 2.9599392)
+upgrade_cost = 5
+
+[node name="UpgradeZoneCM" parent="." unique_id=704378095 instance=ExtResource("7_c7qpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
+
+[node name="CoinTimer" type="Timer" parent="." unique_id=970134500]
+wait_time = 0.75
+autostart = true
+
+[node name="BombTimer" type="Timer" parent="." unique_id=1029655525]
+wait_time = 3.5
+autostart = true
+
+[node name="HeartTimer" type="Timer" parent="." unique_id=227918619]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
+[connection signal="timeout" from="HeartTimer" to="." method="_on_heart_timer_timeout"]

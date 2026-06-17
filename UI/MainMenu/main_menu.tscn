@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b4ewd14rkxf0a"]
+
+[ext_resource type="Script" uid="uid://bpue1iwfwg3p3" path="res://UI/MainMenu/main_menu.gd" id="1_p8ccj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5yyqw"]
+font_size = 24
+
+[node name="MainMenu" type="Control" unique_id=716662810]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p8ccj")
+
+[node name="Developers" type="Label" parent="." unique_id=525564732]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.326
+anchor_top = 0.032407407
+anchor_right = 0.674
+anchor_bottom = 0.10940741
+offset_left = 0.44799805
+offset_right = -0.44799805
+offset_bottom = 0.10399628
+grow_horizontal = 2
+text = "Морозов/Шабулин"
+label_settings = SubResource("LabelSettings_5yyqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1638460759]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2764028
+anchor_top = 0.17579015
+anchor_right = 0.7235973
+anchor_bottom = 0.82420987
+offset_left = -0.41601563
+offset_top = 0.08798218
+offset_right = 0.4159546
+offset_bottom = -0.088012695
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer" unique_id=711427309]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Play" type="Button" parent="BoxContainer/VBoxContainer" unique_id=644414495]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "Играть"
+
+[node name="Settings" type="Button" parent="BoxContainer/VBoxContainer" unique_id=417381579]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "Настройки"
+
+[node name="Quit" type="Button" parent="BoxContainer/VBoxContainer" unique_id=1302443403]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "Выйти из игры"
+
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

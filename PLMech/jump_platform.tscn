@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://3vxb2c7tj338"]
+
+[ext_resource type="Script" uid="uid://dntwejhruwcya" path="res://PLMech/jump_platform.gd" id="1_77lgi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf2wg"]
+albedo_color = Color(0.2560636, 0.00075964764, 0.45769602, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77lgi"]
+albedo_color = Color(0, 0.60120547, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_58pgk"]
+size = Vector3(1.2, 0.6, 1.2)
+
+[node name="JumpPlatform" type="Node3D" unique_id=992447932]
+script = ExtResource("1_77lgi")
+
+[node name="Body" type="Node3D" parent="." unique_id=2073875858]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Body" unique_id=429012891]
+material_override = SubResource("StandardMaterial3D_mf2wg")
+use_collision = true
+collision_mask = 2
+size = Vector3(2, 0.75, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Body" unique_id=1065173528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_77lgi")
+use_collision = true
+collision_mask = 2
+size = Vector3(1.25, 0.5, 1.25)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1937385037]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=158296984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_58pgk")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

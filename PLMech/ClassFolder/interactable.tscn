@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b6ls3degv06ed"]
+
+[ext_resource type="Script" uid="uid://65aanlxw161f" path="res://PLMech/ClassFolder/interactable.gd" id="1_x0axg"]
+
+[node name="Interactable" type="Node3D" unique_id=1651041558]
+script = ExtResource("1_x0axg")
+
+[node name="Body" type="Node3D" parent="." unique_id=651150856]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=629080090]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1861753332]
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=641182529]
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2100811555]
+volume_db = -10.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

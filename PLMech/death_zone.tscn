@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://6hsl6liu0i7o"]
+
+[ext_resource type="Script" uid="uid://bvq2s7n0lafs0" path="res://PLMech/death_zone.gd" id="1_ulaiu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ts8sb"]
+size = Vector3(200, 0.001, 200)
+
+[node name="DeathZone" type="Area3D" unique_id=999536375]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ulaiu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=252855189]
+shape = SubResource("BoxShape3D_ts8sb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,22 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://bvshace0emrf2"]
+
+[sub_resource type="Curve" id="Curve_sxxyx"]
+_data = [Vector2(0, 1), 0.0, 0.38533613, 0, 0, Vector2(1, 0), -2.2747529, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ryaih"]
+curve = SubResource("Curve_sxxyx")
+
+[resource]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angular_velocity_min = -50.000015
+angular_velocity_max = 49.99998
+gravity = Vector3(0, 3, 0)
+scale_min = 0.29999998
+scale_max = 0.59999996
+scale_curve = SubResource("CurveTexture_ryaih")

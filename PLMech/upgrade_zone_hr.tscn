@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bipjefmgulg63"]
+
+[ext_resource type="PackedScene" uid="uid://cyjwgkuhhcbn0" path="res://PLMech/ClassFolder/upgrade_zone.tscn" id="1_ni64o"]
+[ext_resource type="Texture2D" uid="uid://dslpmhpl2y0et" path="res://Assets/Partickles/Pack3/suit_hearts.png" id="2_f7ubl"]
+[ext_resource type="Material" uid="uid://bvshace0emrf2" path="res://Assets/Partickles/upgrade_particles.tres" id="3_hqx3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3e0lk"]
+albedo_color = Color(1, 0.29411766, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ni64o"]
+height = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f7ubl"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6g1m"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.557, 0.478, 0, 1)
+albedo_texture = ExtResource("2_f7ubl")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1usfx"]
+
+[node name="UpgradeZoneHR" unique_id=1698409362 instance=ExtResource("1_ni64o")]
+upgrade_cost = 30
+upgrade_type = 5
+max_level = 5
+display_text = "Уменьшает время появления сердец"
+text_color = Color(1, 0.29411766, 0, 1)
+
+[node name="button" parent="Body/button-round" parent_id_path=PackedInt32Array(1470440088) index="0" unique_id=121502111]
+material_override = SubResource("StandardMaterial3D_3e0lk")
+
+[node name="CollisionShape3D" parent="Area3D" parent_id_path=PackedInt32Array(1888744103) index="0" unique_id=488009930]
+shape = SubResource("CylinderShape3D_ni64o")
+
+[node name="Sprite3D" parent="." index="3" unique_id=1139822640]
+texture = SubResource("ViewportTexture_f7ubl")
+
+[node name="Label" parent="SubViewport" parent_id_path=PackedInt32Array(1656507602) index="0" unique_id=1949997788]
+modulate = Color(1, 0.29411766, 0, 1)
+text = "Уменьшает время появления сердец"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="5" unique_id=1600502757]
+material_override = SubResource("StandardMaterial3D_e6g1m")
+amount = 16
+lifetime = 1.5
+process_material = ExtResource("3_hqx3l")
+draw_pass_1 = SubResource("QuadMesh_1usfx")

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cehc5ji5vh4pl"]
+
+[ext_resource type="PackedScene" uid="uid://cyjwgkuhhcbn0" path="res://PLMech/ClassFolder/upgrade_zone.tscn" id="1_ydny3"]
+[ext_resource type="Texture2D" uid="uid://b8ja4sj150wqa" path="res://Assets/Partickles/Pack3/arrow_right.png" id="2_v5dm6"]
+[ext_resource type="Material" uid="uid://bvshace0emrf2" path="res://Assets/Partickles/upgrade_particles.tres" id="3_sxxyx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydny3"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sxxyx"]
+height = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sxxyx"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxxyx"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.685, 1.685, 0, 1)
+albedo_texture = ExtResource("2_v5dm6")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ryaih"]
+
+[node name="UpgradeZoneSpeed" unique_id=1698409362 instance=ExtResource("1_ydny3")]
+upgrade_cost = 5
+max_level = 10
+text_color = Color(1, 1, 0, 1)
+
+[node name="button" parent="Body/button-round" parent_id_path=PackedInt32Array(1470440088) index="0" unique_id=121502111]
+material_override = SubResource("StandardMaterial3D_ydny3")
+
+[node name="CollisionShape3D" parent="Area3D" parent_id_path=PackedInt32Array(1888744103) index="0" unique_id=488009930]
+shape = SubResource("CylinderShape3D_sxxyx")
+
+[node name="Sprite3D" parent="." index="3" unique_id=1139822640]
+texture = SubResource("ViewportTexture_sxxyx")
+
+[node name="Label" parent="SubViewport" parent_id_path=PackedInt32Array(1656507602) index="0" unique_id=1949997788]
+modulate = Color(1, 1, 0, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="5" unique_id=199245395]
+material_override = SubResource("StandardMaterial3D_sxxyx")
+amount = 16
+lifetime = 1.5
+process_material = ExtResource("3_sxxyx")
+draw_pass_1 = SubResource("QuadMesh_ryaih")
